@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Obituaries</title>
+    <meta name="description" content="A platform to view and submit obituaries">
+    <meta name="keywords" content="obituary, memorial, tribute">
+    <meta property="og:title" content="View Obituaries">
+    <meta property="og:description" content="A platform to view and submit obituaries">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url_for('view_obituaries', _external=True) }}">
+    <meta property="og:image" content="link_to_some_image.jpg">
+    <link rel="canonical" href="{{ url_for('view_obituaries', _external=True) }}">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #444;
+        }
+        th {
+            background-color: green;
+        }
+        tr:nth-child(even) {
+            background-color: #333;
+        }
+        a {
+            color: orange;
+            text-decoration: none;
+        }
+        .social-links a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Date of Death</th>
+                <th>Content</th>
+                <th>Author</th>
+                <th>Submission Date</th>
+                <th>Slug</th>
+                <th>Share</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obituary in obituaries %}
+                <tr>
+                    <td>{{ obituary[0] }}</td>
+                    <td>{{ obituary[1] }}</td>
+                    <td>{{ obituary[2] }}</td>
+                    <td>{{ obituary[3] }}</td>
+                    <td>{{ obituary[4] }}</td>
+                    <td>{{ obituary[5] }}</td>
+                    <td>{{ obituary[6] }}</td>
+                    <td class="social-links">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('view_obituaries', _external=True) }}/{{ obituary[6] }}" target="_blank">Facebook</a>
+                        <a href="https://twitter.com/share?url={{ url_for('view_obituaries', _external=True) }}/{{ obituary[6] }}&text={{ obituary[0] }}" target="_blank">Twitter</a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url_for('view_obituaries', _external=True) }}/{{ obituary[6] }}" target="_blank">LinkedIn</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

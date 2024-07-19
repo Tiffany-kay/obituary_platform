@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{ url_for('view_obituaries', _external=True) }}</loc>
+        <priority>1.0</priority>
+    </url>
+    {% for obituary in obituaries %}
+    <url>
+        <loc>{{ url_for('view_obituaries', _external=True) }}/{{ obituary[0] }}</loc>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+</urlset>
